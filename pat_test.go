@@ -47,9 +47,9 @@ func testMatch(t *testing.T, meth, pat, path string, ok bool, vars map[string]st
 
 func TestPatMatch(t *testing.T) {
 	testMatch(t, "DELETE", "/foo/{name}", "/foo/bar", true, map[string]string{":name": "bar"})
-	testMatch(t, "GET", "/foo/{name}", "/foo/bar/baz", true, map[string]string{":name": "bar"})
+	testMatch(t, "GET", "/foo/{name}", "/foo/bar/baz", false, map[string]string{":name": "bar"})
 	testMatch(t, "POST", "/foo/{name}/baz", "/foo/bar/baz", true, map[string]string{":name": "bar"})
-	testMatch(t, "PUT", "/foo/{name}/baz", "/foo/bar/baz/ding", true, map[string]string{":name": "bar"})
+	testMatch(t, "PUT", "/foo/{name}/baz", "/foo/bar/baz/ding", false, map[string]string{":name": "bar"})
 	testMatch(t, "GET", "/foo/x{name}", "/foo/xbar", true, map[string]string{":name": "bar"})
-	testMatch(t, "GET", "/foo/x{name}", "/foo/xbar/baz", true, map[string]string{":name": "bar"})
+	testMatch(t, "GET", "/foo/x{name}", "/foo/xbar/baz", false, map[string]string{":name": "bar"})
 }
